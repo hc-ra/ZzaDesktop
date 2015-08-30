@@ -25,18 +25,20 @@ namespace ZzaDesktop
 			_customerListViewModel.PlaceOrderRequested += NavToOrder;
 			_customerListViewModel.AddCustomerRequested += NavToAddCustomer;
 			_customerListViewModel.EditCustomerRequested += NavToEditCustomer;
+			_addEditViewModel.Done +=
+				() => CurrentViewModel = _customerListViewModel;
 		}
 
 		private void NavToAddCustomer(Customer customer)
 		{
-			_addEditViewModel.EditMode = true;
+			_addEditViewModel.EditMode = false;
 			_addEditViewModel.SetCustomer(customer);
 			CurrentViewModel = _addEditViewModel;
 		}
 
 		private void NavToEditCustomer(Customer customer)
 		{
-			_addEditViewModel.EditMode = false;
+			_addEditViewModel.EditMode = true;
 			_addEditViewModel.SetCustomer(customer);
 			CurrentViewModel = _addEditViewModel;
 		}
